@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+</head>
+<body>
+    <ul>
+        <li><a href="#ejercicio1">Ejercicio 1</a></li>
+        <li><a href="#ejercicio2">Ejercicio 2</a></li>
+        <li><a href="#ejercicio3">Ejercicio 3</a></li>
+        <li><a href="#ejercicio4">Ejercicio 4</a></li>
+        <li><a href="#ejercicio5">Ejercicio 5</a></li>
+        <li><a href="#ejercicio6">Ejercicio 6</a></li>
+        <li><a href="#ejercicio7">Ejercicio 7</a></li>
+        <li><a href="#ejercicio8">Ejercicio 8</a></li>
+        <li><a href="#ejercicio9">Ejercicio 9</a></li>
+        <li><a href="#ejercicio10">Ejercicio 10</a></li>
+    </ul>
+    <div id="ejercicio1">
+        <h2>Ejercicio 1</h2>
+        <form id="Form1">
+        <input type="text" name="nombre" placeholder="Introduce tu nombre">
+        <input type="number" name="edad" placeholder="Introduce tu edad" pattern="^[0-9]+$">
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        let form = document.querySelector("form");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let resultadosAnteriores = document.querySelectorAll("#ejercicio1 p");
+            for (let p of resultadosAnteriores) {
+            p.remove();
+            }
+
+            let nombre = document.querySelector("input[name='nombre']").value;
+            let edad = parseInt(document.querySelector("input[name='edad']").value, 10);
+            let edadProxima = edad + 1;
+
+            console.log(`Hola ${nombre}, tienes ${edad} años y el año que viene tendrás ${edadProxima} años`);
+
+            let p = document.createElement("p");
+            p.textContent = `Hola ${nombre}, tienes ${edad} años y el año que viene tendrás ${edadProxima} años`;
+
+            document.querySelector("div#ejercicio1").appendChild(p);
+        });
+    </script>
+    </div>
+    <div id="ejercicio2">
+        <h2>Ejercicio 2</h2>
+        <p>Calcular el área, en el caso del círculo solo ingrese el radio en el indicativo base</p>
+        <form id="Form2">
+            <select name="figura">
+                <option value="triangulo">Triángulo</option>
+                <option value="rectangulo">Rectángulo</option>
+                <option value="círculo">Círculo</option>
+            </select>
+            <input type="text" name="base" placeholder="Introduce la base">
+            <input type="text" name="altura" placeholder="Introduce la altura">
+            <input type="submit" value="Enviar">
+        </form>
+    
+        <script>
+            let formEjercicio2 = document.querySelector("#ejercicio2 form");
+        
+            formEjercicio2.addEventListener("submit", (e) => {
+                e.preventDefault();
+        
+                // Eliminar los párrafos anteriores
+                let resultadosAnteriores = document.querySelectorAll("#ejercicio2 p");
+                for (let p of resultadosAnteriores) {
+                    p.remove();
+                }
+        
+                let figura = document.querySelector("select[name='figura']").value;
+                let base = parseFloat(document.querySelector("input[name='base']").value);
+                let altura = parseFloat(document.querySelector("input[name='altura']").value);
+        
+                switch (figura) {
+                    case "triangulo":
+                        let areaTriangulo = base * altura / 2;
+                        console.log(`El área del triángulo es ${areaTriangulo}`);
+        
+                        let pTriangulo = document.createElement("p");
+                        pTriangulo.textContent = `El área del triángulo es ${areaTriangulo}`;
+        
+                        document.querySelector("div#ejercicio2").appendChild(pTriangulo);
+                        break;
+                    case "rectangulo":
+                        let areaRectangulo = base * altura;
+                        console.log(`El área del rectángulo es ${areaRectangulo}`);
+        
+                        let pRectangulo = document.createElement("p");
+                        pRectangulo.textContent = `El área del rectángulo es ${areaRectangulo}`;
+        
+                        document.querySelector("div#ejercicio2").appendChild(pRectangulo);
+                        break;
+                    case "círculo":
+                        let radio = base;
+                        let pi = 3.14159;
+                        let areaCirculo = pi * radio * radio;
+                        console.log(`El área del círculo es ${areaCirculo}`);
+        
+                        let pCirculo = document.createElement("p");
+                        pCirculo.textContent = `El área del círculo es ${areaCirculo}`;
+        
+                        document.querySelector("div#ejercicio2").appendChild(pCirculo);
+                        break;
+                }
+            });
+        </script>
+    </div>
+    <div id="ejercicio3">
+        <h2>Ejercicio 3</h2>
+        <p>Ingresa un número y se mostrarán los números pares e impares hasta ese número.</p>
+        <input type="number" id="numeroInput" placeholder="Ingresa un número">
+        <button onclick="mostrarNumeros()">Mostrar</button>
+        <div id="resultadoDiv3"></div>
+    
+        <script>
+            function mostrarNumeros() {
+                const numeroInput = document.getElementById("numeroInput");
+                const resultadoDiv = document.getElementById("resultadoDiv3");
+                resultadoDiv.innerHTML = ""; 
+    
+                const numero = parseInt(numeroInput.value);
+    
+                if (!isNaN(numero)) {
+                    for (let i = 1; i <= numero; i++) {
+                        const esPar = i % 2 === 0;
+                        const mensaje = `${i} - es ${esPar ? 'par' : 'impar'}`;
+                        const p = document.createElement("p");
+                        p.textContent = mensaje;
+                        resultadoDiv.appendChild(p);
+                    }
+                } else {
+                    resultadoDiv.textContent = "Por favor, ingresa un número válido.";
+                }
+            }
+        </script>
+    
+       
+    </div>
+    <div id="ejercicio4">
+        <h2>Ejercicio 4</h2>
+    <p>Ingresa un número entero mayor que 1 y verificaremos si es primo o no.</p>
+    <input type="number" id="numeroInput4" placeholder="Ingresa un número">
+    <button onclick="verificarPrimo()">Verificar</button>
+    <div id="resultadoDiv4"></div>
+
+    <script>
+        function verificarPrimo() {
+            const numeroInput = document.getElementById("numeroInput4");
+            const resultadoDiv = document.getElementById("resultadoDiv4");
+            resultadoDiv.innerHTML = ""; // Limpiar resultados anteriores
+
+            const numero = parseInt(numeroInput.value);
+
+            if (!isNaN(numero) && numero > 1) {
+                let esPrimo = true;
+
+                for (let i = 2; i < numero; i++) {
+                    if (numero % i === 0) {
+                        esPrimo = false;
+                        break;
+                    }
+                }
+
+                if (esPrimo) {
+                    resultadoDiv.textContent = `${numero} es un número primo.`;
+                } else {
+                    resultadoDiv.textContent = `${numero} no es un número primo.`;
+                }
+            } else {
+                resultadoDiv.textContent = "Ingresa un número entero mayor que 1.";
+            }
+        }
+    </script>
+        
+    </div>
+    <div id="ejercicio5">
+        <h2>Ejercicio 5</h2>
+    <p>Ingresa un número entero mayor que cero y calcularemos su factorial.</p>
+    <input type="number" id="numeroInput5" placeholder="Ingresa un número">
+    <button onclick="calcularFactorial()">Calcular Factorial</button>
+    <div id="resultadoDiv"></div>
+
+    <script>
+        function calcularFactorial() {
+            const numeroInput = document.getElementById("numeroInput5");
+            const resultadoDiv = document.getElementById("resultadoDiv");
+            resultadoDiv.innerHTML = ""; 
+
+            const numero = parseInt(numeroInput.value);
+
+            if (!isNaN(numero) && numero > 0) {
+                let factorial = 1;
+
+                for (let i = 1; i <= numero; i++) {
+                    factorial *= i;
+                }
+
+                resultadoDiv.textContent = `El factorial de ${numero} es ${factorial}`;
+            } else {
+                resultadoDiv.textContent = "Ingresa un número entero mayor que cero.";
+            }
+        }
+    </script>
+        
+    </div>
+    <div id="ejercicio6">
+        <h2>Ejercicio 6</h2>
+        <p>Introduce una serie de números. La suma total no debe superar 50.</p>
+        <input type="number" id="numeroInput6" placeholder="Ingresa un número">
+        <button onclick="sumarNumeros()">Agregar Número</button>
+        <button onclick="reiniciar()">Reiniciar</button>
+        <div id="resultadoDiv6"></div>
+    
+        <script>
+            let sumaTotal = 0;
+            let contador = 0;
+            const resultadoDiv = document.getElementById("resultadoDiv6");
+    
+            function sumarNumeros() {
+                const numeroInput = document.getElementById("numeroInput6");
+    
+                const numero = parseInt(numeroInput.value);
+    
+                if (!isNaN(numero)) {
+                    if (sumaTotal + numero <= 50) {
+                        sumaTotal += numero;
+                        contador++;
+                        resultadoDiv.textContent = `Suma total: ${sumaTotal}, Números introducidos: ${contador}`;
+                    } else {
+                        alert("La suma total superaría 50 si se agrega este número.");
+                    }
+                } else {
+                    resultadoDiv.textContent = "Por favor, ingresa un número válido.";
+                }
+            }
+    
+            function reiniciar() {
+                sumaTotal = 0;
+                contador = 0;
+                resultadoDiv.textContent = "Reiniciado. Introduce una serie de números.";
+            }
+        </script>     
+    </div>
+    <div id="ejercicio7">
+        <h2>Ejercicio 7</h2>
+    <button id="iniciarButton">Iniciar</button>
+    <div id="resultadoDiv7"></div>
+
+    <script>
+        const iniciarButton = document.getElementById("iniciarButton");
+        iniciarButton.addEventListener("click", function () {
+            // Crear un array de 5 números
+            const numeros = [2, 5, 8, 3, 6];
+            const pares = [];
+            const impares = [];
+
+            // Función para generar un número aleatorio entre 1 y 10
+            function generarNumeroAleatorio() {
+                return Math.floor(Math.random() * 10) + 1;
+            }
+
+            // Recorrer el array de números, multiplicar por número aleatorio y clasificar en pares o impares
+            for (let i = 0; i < numeros.length; i++) {
+                const numero = numeros[i];
+                const aleatorio = generarNumeroAleatorio();
+                const resultado = numero * aleatorio;
+
+                if (resultado % 2 === 0) {
+                    pares.push(resultado);
+                } else {
+                    impares.push(resultado);
+                }
+
+                console.log(`${numero} x ${aleatorio} = ${resultado}`);
+            }
+
+            // Mostrar los arrays de pares e impares en el div
+            const resultadoDiv = document.getElementById("resultadoDiv7");
+            const paresArray = document.createElement("p");
+            paresArray.textContent = "Array de Pares: " + pares.join(", ");
+            resultadoDiv.appendChild(paresArray);
+
+            const imparesArray = document.createElement("p");
+            imparesArray.textContent = "Array de Impares: " + impares.join(", ");
+            resultadoDiv.appendChild(imparesArray);
+
+            // Mostrar los arrays de pares e impares en la consola
+            console.log("Array de Pares:", pares);
+            console.log("Array de Impares:", impares);
+        });
+    </script>
+        
+    </div>
+    <div id="ejercicio8">
+        <h2>Ejercicio 8</h2>
+        <p>Introduce un número de DNI para calcular la letra correspondiente.</p>
+        <input type="number" id="dniInput" placeholder="Ingresa un número de DNI">
+        <button onclick="calcularLetraDNI()">Calcular Letra</button>
+        <div id="resultadoDiv8"></div>
+    
+        <script>
+            const letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+    
+            function calcularLetraDNI() {
+                const dniInput = document.getElementById("dniInput");
+                const resultadoDiv = document.getElementById("resultadoDiv8");
+                resultadoDiv.innerHTML = ""; 
+                const dni = parseInt(dniInput.value);
+    
+                if (!isNaN(dni) && dni >= 0 && dni <= 99999999) {
+                    const posicionLetra = dni % 23;
+                    const letraDNI = letras[posicionLetra];
+                    resultadoDiv.textContent = `La letra correspondiente al DNI ${dni} es ${letraDNI}.`;
+                } else {
+                    resultadoDiv.textContent = "Por favor, ingresa un número de DNI válido (no negativo y con hasta 8 dígitos).";
+                }
+            }
+        </script>
+        
+    </div>
+    <div id="ejercicio9">
+        <h2>Ejercicio 9</h2>
+        <p>Introduce una palabra para contar las consonantes, vocales y su longitud.</p>
+        <input type="text" id="palabraInput" placeholder="Ingresa una palabra">
+        <button onclick="contarCaracteres()">Contar</button>
+        <div id="resultadoDiv9"></div>
+    
+        <script>
+            function contarCaracteres() {
+                const palabraInput = document.getElementById("palabraInput");
+                const resultadoDiv = document.getElementById("resultadoDiv9");
+                resultadoDiv.innerHTML = ""; 
+    
+                const palabra = palabraInput.value.toLowerCase(); 
+    
+                const longitud = palabra.length;
+                let consonantes = 0;
+                let vocales = 0;
+    
+                for (let i = 0; i < longitud; i++) {
+                    const letra = palabra.charAt(i);
+                    if (letra.match(/[a-z]/)) {
+                        if ('aeiou'.includes(letra)) {
+                            vocales++;
+                        } else {
+                            consonantes++;
+                        }
+                    }
+                }
+    
+                console.log(`Longitud de la palabra: ${longitud}`);
+                console.log(`Consonantes: ${consonantes}`);
+                console.log(`Vocales: ${vocales}`);
+    
+                const resultado = document.createElement("p");
+                resultado.textContent = `Longitud de la palabra: ${longitud}, Consonantes: ${consonantes}, Vocales: ${vocales}`;
+                resultadoDiv.appendChild(resultado);
+            }
+        </script>
+        
+    </div>
+    <div id="ejercicio10">
+        <h2>Ejercicio 10</h2>
+
+    <button id="verificarButton">Verificar Color</button>
+
+    <script>
+        const colores = ["azul", "amarillo", "rojo", "verde", "rosa"];
+        const verificarButton = document.getElementById("verificarButton");
+
+        verificarButton.addEventListener("click", function () {
+            // Solicitar un color al usuario
+            const colorUsuario = prompt("Introduce un color:");
+
+            // Comprobar si el color introducido se encuentra en el array
+            if (colores.includes(colorUsuario)) {
+                alert(`El color "${colorUsuario}" se encuentra en el array.`);
+            } else {
+                alert(`El color "${colorUsuario}" no se encuentra en el array.`);
+            }
+        });
+    </script>
+    </div>
+    
+</body>
+</html>
