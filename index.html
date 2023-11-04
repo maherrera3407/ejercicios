@@ -7,18 +7,18 @@
 </head>
 <body>
     <ul>
-        <li><a href="#ejercicio1">Ejercicio 1</a></li>
-        <li><a href="#ejercicio2">Ejercicio 2</a></li>
-        <li><a href="#ejercicio3">Ejercicio 3</a></li>
-        <li><a href="#ejercicio4">Ejercicio 4</a></li>
-        <li><a href="#ejercicio5">Ejercicio 5</a></li>
-        <li><a href="#ejercicio6">Ejercicio 6</a></li>
-        <li><a href="#ejercicio7">Ejercicio 7</a></li>
-        <li><a href="#ejercicio8">Ejercicio 8</a></li>
-        <li><a href="#ejercicio9">Ejercicio 9</a></li>
-        <li><a href="#ejercicio10">Ejercicio 10</a></li>
+        <li><a class="enlace-ejercicio" href="#ejercicio1">Ejercicio 1</a></li>
+        <li><a class="enlace-ejercicio" href="#ejercicio2">Ejercicio 2</a></li>
+        <li><a class="enlace-ejercicio" href="#ejercicio3">Ejercicio 3</a></li>
+        <li><a class="enlace-ejercicio" href="#ejercicio4">Ejercicio 4</a></li>
+        <li><a class="enlace-ejercicio" href="#ejercicio5">Ejercicio 5</a></li>
+        <li><a class="enlace-ejercicio" href="#ejercicio6">Ejercicio 6</a></li>
+        <li><a class="enlace-ejercicio" href="#ejercicio7">Ejercicio 7</a></li>
+        <li><a class="enlace-ejercicio" href="#ejercicio8">Ejercicio 8</a></li>
+        <li><a class="enlace-ejercicio" href="#ejercicio9">Ejercicio 9</a></li>
+        <li><a class="enlace-ejercicio" href="#ejercicio10">Ejercicio 10</a></li>
     </ul>
-    <div id="ejercicio1">
+    <div id="ejercicio1" class="ejercicio">
         <h2>Ejercicio 1</h2>
         <form id="Form1">
         <input type="text" name="nombre" placeholder="Introduce tu nombre">
@@ -50,7 +50,7 @@
         });
     </script>
     </div>
-    <div id="ejercicio2">
+    <div id="ejercicio2" class="ejercicio">
         <h2>Ejercicio 2</h2>
         <p>Calcular el área, en el caso del círculo solo ingrese el radio en el indicativo base</p>
         <form id="Form2">
@@ -114,7 +114,7 @@
             });
         </script>
     </div>
-    <div id="ejercicio3">
+    <div id="ejercicio3" class="ejercicio">
         <h2>Ejercicio 3</h2>
         <p>Ingresa un número y se mostrarán los números pares e impares hasta ese número.</p>
         <input type="number" id="numeroInput" placeholder="Ingresa un número">
@@ -145,7 +145,7 @@
     
        
     </div>
-    <div id="ejercicio4">
+    <div id="ejercicio4" class="ejercicio">
         <h2>Ejercicio 4</h2>
     <p>Ingresa un número entero mayor que 1 y verificaremos si es primo o no.</p>
     <input type="number" id="numeroInput4" placeholder="Ingresa un número">
@@ -182,7 +182,7 @@
     </script>
         
     </div>
-    <div id="ejercicio5">
+    <div id="ejercicio5" class="ejercicio">
         <h2>Ejercicio 5</h2>
     <p>Ingresa un número entero mayor que cero y calcularemos su factorial.</p>
     <input type="number" id="numeroInput5" placeholder="Ingresa un número">
@@ -212,7 +212,7 @@
     </script>
         
     </div>
-    <div id="ejercicio6">
+    <div id="ejercicio6" class="ejercicio">
         <h2>Ejercicio 6</h2>
         <p>Introduce una serie de números. La suma total no debe superar 50.</p>
         <input type="number" id="numeroInput6" placeholder="Ingresa un número">
@@ -250,7 +250,7 @@
             }
         </script>     
     </div>
-    <div id="ejercicio7">
+    <div id="ejercicio7" class="ejercicio">
         <h2>Ejercicio 7</h2>
     <button id="iniciarButton">Iniciar</button>
     <div id="resultadoDiv7"></div>
@@ -300,7 +300,7 @@
     </script>
         
     </div>
-    <div id="ejercicio8">
+    <div id="ejercicio8" class="ejercicio">
         <h2>Ejercicio 8</h2>
         <p>Introduce un número de DNI para calcular la letra correspondiente.</p>
         <input type="number" id="dniInput" placeholder="Ingresa un número de DNI">
@@ -327,7 +327,7 @@
         </script>
         
     </div>
-    <div id="ejercicio9">
+    <div id="ejercicio9" class="ejercicio">
         <h2>Ejercicio 9</h2>
         <p>Introduce una palabra para contar las consonantes, vocales y su longitud.</p>
         <input type="text" id="palabraInput" placeholder="Ingresa una palabra">
@@ -368,7 +368,7 @@
         </script>
         
     </div>
-    <div id="ejercicio10">
+    <div id="ejercicio10" class="ejercicio">
         <h2>Ejercicio 10</h2>
 
     <button id="verificarButton">Verificar Color</button>
@@ -390,6 +390,23 @@
         });
     </script>
     </div>
-    
+    <script>
+        const ejercicios = document.querySelectorAll('.ejercicio');
+        ejercicios.forEach(ejercicio => {
+            ejercicio.style.display = 'none';
+        });
+
+        const enlacesEjercicio = document.querySelectorAll('.enlace-ejercicio');
+        enlacesEjercicio.forEach(enlace => {
+            enlace.addEventListener('click', function (e) {
+                e.preventDefault();
+                const enlaceSeleccionado = e.target.getAttribute('href').substring(1);
+                ejercicios.forEach(ejercicio => {
+                    ejercicio.style.display = 'none';
+                });
+                document.getElementById(enlaceSeleccionado).style.display = 'block';
+            });
+        });
+    </script>
 </body>
 </html>
